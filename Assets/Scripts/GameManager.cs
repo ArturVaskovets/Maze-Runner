@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerPrefab;
     public GameObject mazePrefab;
+    public Joystick joystick;
 
     public bool reloadSceneOnRestart;
 
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
         _maze = Instantiate(mazePrefab, this.transform.position, Quaternion.identity).GetComponent<Maze>();
         Maze.Create();
         _player = Instantiate(playerPrefab, new Vector3(Maze.startCell.x + _cellSize / 2, Maze.startCell.y + _cellSize / 2, 0), Quaternion.identity);
+        _player.GetComponent<PlayerControls>().joystick = this.joystick;
         CameraManager.Instance.SetCameraTarget();
         CameraManager.Instance.Initialize();
     }
