@@ -36,9 +36,11 @@ public class MazeGenerator
     public Vector2Int startCell;
     private Vector2Int _finishCell;
     private int _finishDistance;
+    private List<MazeGeneratorCell> _correctPath;
 
     public Vector2Int FinishCell { get => _finishCell; }
     public int FinishDistance { get => _finishDistance; }
+    public List<MazeGeneratorCell> CorrectPath { get => _correctPath;}
 
     public MazeGeneratorCell[,] Generate ()
     {
@@ -58,10 +60,10 @@ public class MazeGenerator
         switch (algorithm)
         {
             case Algorithms.RecursiveBacktracking:
-                RecursiveBacktracker(cells, startCell);
+                RecursiveBacktracker(cells);
                 break;
             case Algorithms.PrimsAlgorithm:
-                PrimsAlgorithm(cells, startCell);
+                PrimsAlgorithm(cells);
                 break;
             default:
                 break;
@@ -69,6 +71,7 @@ public class MazeGenerator
 
 
         _finishCell = SetFinish(cells);
+        _correctPath = FindCorrectPath(cells);
 
         //Clean up
         RemoveUselessWalls(cells);
@@ -77,7 +80,7 @@ public class MazeGenerator
         return cells;
     }
 
-    private void RecursiveBacktracker(MazeGeneratorCell[,] cells, Vector2Int startCell)
+    private void RecursiveBacktracker(MazeGeneratorCell[,] cells)
     {
         MazeGeneratorCell current = cells[startCell.x, startCell.y];
         current.visited = true;
@@ -120,7 +123,7 @@ public class MazeGenerator
 
     }
 
-    private void PrimsAlgorithm(MazeGeneratorCell[,] cells, Vector2Int startCell)
+    private void PrimsAlgorithm(MazeGeneratorCell[,] cells)
     {
         List<MazeGeneratorCell> unvisitedCells = new List<MazeGeneratorCell>();
         for (int x = 0; x < cells.GetLength(0) - 1; x++)
@@ -155,7 +158,43 @@ public class MazeGenerator
 
     }
 
+    private List<MazeGeneratorCell> FindCorrectPath(MazeGeneratorCell[,] cells)
+    {
+        List<MazeGeneratorCell> path = new List<MazeGeneratorCell>();
 
+        MazeGeneratorCell current = cells[_finishCell.x, _finishCell.y];
+        path.Add(current);
+
+        while (current.distance > 0)
+        {
+            if(current.x > 0 && IsConnected(current, cells[current.x - 1, current.y]) && cells[current.x - 1, current.y].distance < current.distance)
+            {
+                current = cells[current.x - 1, current.y];
+                path.Add(current);
+                continue;
+            }
+            if (current.y > 0 && IsConnected(current, cells[current.x , current.y - 1]) && cells[current.x, current.y - 1].distance < current.distance)
+            {
+                current = cells[current.x, current.y - 1];
+                path.Add(current);
+                continue;
+            }
+            if (current.x < cells.GetLength(0) - 2 && IsConnected(current, cells[current.x + 1, current.y]) && cells[current.x + 1, current.y].distance < current.distance)
+            {
+                current = cells[current.x + 1, current.y];
+                path.Add(current);
+                continue;
+            }
+            if (current.y < cells.GetLength(1) - 2 && IsConnected(current, cells[current.x, current.y + 1]) && cells[current.x, current.y + 1].distance < current.distance)
+            {
+                current = cells[current.x, current.y + 1];
+                path.Add(current);
+                continue;
+            }
+        }
+
+        return path;
+    }
     private MazeGeneratorCell getVisitedNeighbour(MazeGeneratorCell[,] cells, MazeGeneratorCell currentCell)
     {
         List<MazeGeneratorCell> list = new List<MazeGeneratorCell>();
@@ -175,6 +214,40 @@ public class MazeGenerator
             return null;
     }
 
+    private bool IsConnected(MazeGeneratorCell a, MazeGeneratorCell b)
+    {
+        bool connected = true;
+
+        if (a.x == b.x)
+        {
+            if (a.y > b.y)
+            {
+                if (a.wallBottom)
+                    connected = false;
+            }
+            else
+            {
+                if (b.wallBottom)
+                    connected = false;
+            }
+        }
+        else
+        {
+            if (a.x > b.x)
+            {
+                if (a.wallLeft)
+                    connected = false;
+            }
+            else
+            { 
+                if (b.wallLeft)
+                    connected = false;
+            }
+        }
+
+        return connected;
+    }
+
     private void RemoveWalls(MazeGeneratorCell a, MazeGeneratorCell b)
     {
         if (a.x == b.x)
@@ -190,7 +263,6 @@ public class MazeGenerator
                 a.wallLeft = false;
             else
                 b.wallLeft = false;
-
         }
     }
 

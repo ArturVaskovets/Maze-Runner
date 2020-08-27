@@ -19,12 +19,15 @@ public class Maze : MonoBehaviour
 
     [Header("Scene settings")]    
     public GameObject cellPrefab;
-    
+    public HintRenderer hintRenderer;
 
     [Header("Debug info")]
     public Vector2Int finishCell;
     public int finishDistance;
     public MazeGeneratorCell[,] cells;
+    public List<MazeGeneratorCell> correctPath;
+    public bool showCellDistance;
+    public bool drawHint;
 
 
     public void Create()
@@ -46,9 +49,16 @@ public class Maze : MonoBehaviour
         generator.startCell = this.startCell;
 
         this.cells = generator.Generate();
-        finishCell = generator.FinishCell;
-        finishDistance = generator.FinishDistance;
+        this.finishCell = generator.FinishCell;
+        this.finishDistance = generator.FinishDistance;
+        this.correctPath = generator.CorrectPath;
         Spawn();
+
+        if(drawHint)
+        {
+            hintRenderer.SetPoints(correctPath);
+            hintRenderer.Render();
+        }
     }
 
 
@@ -62,16 +72,18 @@ public class Maze : MonoBehaviour
                 cell.transform.parent = this.transform;
 
                 #region Debug
-                // DEBUG
-                //TextMeshPro textField = cell.AddComponent<TextMeshPro>();
-                //textField.fontSize = 3f;
-                //textField.alignment = TextAlignmentOptions.Center;
-                //textField.color = new Color(255f, 255f, 255f);
-                //textField.text = cells[x, y].distance.ToString();
+                if(showCellDistance)
+                {
+                    TextMeshPro textField = cell.AddComponent<TextMeshPro>();
+                    textField.fontSize = 3f;
+                    textField.alignment = TextAlignmentOptions.Center;
+                    textField.color = new Color(255f, 255f, 255f);
+                    textField.text = cells[x, y].distance.ToString();
 
-                //RectTransform rect = cell.GetComponent<RectTransform>();
-                //rect.pivot = new Vector2(0,0);
-                //rect.sizeDelta = new Vector2(1, 1);
+                    RectTransform rect = cell.GetComponent<RectTransform>();
+                    rect.pivot = new Vector2(0, 0);
+                    rect.sizeDelta = new Vector2(1, 1);
+                }
                 #endregion
 
                 CellWalls walls = cell.GetComponent<CellWalls>();
