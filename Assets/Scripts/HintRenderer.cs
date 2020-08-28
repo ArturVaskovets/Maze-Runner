@@ -22,9 +22,11 @@ public class HintRenderer : MonoBehaviour
     {
         Debug.Log($"Points(HintRenderer) - {path.Count}");
         _points = new List<Vector3>();
+        float cellCenter = GameManager.cellSize/2;
+
         for (int i = 0; i < path.Count; i++)
         {
-            Vector3 point = new Vector3(path[i].x + cellSize.x/2, path[i].y + cellSize.y/2, 0);
+            Vector3 point = new Vector3(path[i].x + cellCenter, path[i].y + cellCenter, 0);
             _points.Add(point);
         }
     }

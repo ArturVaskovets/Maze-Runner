@@ -260,7 +260,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -380,6 +380,110 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &649986421
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245234, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245236, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: randomSettings
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245236, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: algorithm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245236, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: randomStartCell
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245236, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: width
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245236, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: height
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245236, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: dificulty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136324262098245237, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_Name
+      value: Maze
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185117638552919026, guid: 6e076e8be0099054eb748d10c634a989,
+        type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e076e8be0099054eb748d10c634a989, type: 3}
 --- !u!1001 &808810701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -518,6 +622,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fixed Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 2929252283123773939, guid: aaa2c939c0359ac4dbce3f49e8b90252,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
         type: 3}
       propertyPath: handleRange
@@ -551,6 +660,18 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+--- !u!114 &1101217050 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2136324262098245236, guid: 6e076e8be0099054eb748d10c634a989,
+    type: 3}
+  m_PrefabInstance: {fileID: 649986421}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594104e74a282f74bb6203976e4c86d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1106814913
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +737,7 @@ Transform:
   m_Children:
   - {fileID: 175007827}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1129501903
 GameObject:
@@ -711,7 +832,7 @@ RectTransform:
   m_Children:
   - {fileID: 1704127343}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -889,7 +1010,7 @@ Transform:
   m_Children:
   - {fileID: 1338031366}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &718600434792697624
 PrefabInstance:
@@ -902,7 +1023,7 @@ PrefabInstance:
         type: 3}
       propertyPath: maze
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1101217050}
     - target: {fileID: 4367360233327444981, guid: cfb323f291a9983439469102fdae31ca,
         type: 3}
       propertyPath: joystick

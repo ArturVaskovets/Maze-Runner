@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 
@@ -9,12 +10,15 @@ public class Maze : MonoBehaviour
 {
     [Header("Maze settings")]
     public bool randomSettings;
+
     public Algorithms algorithm;
     public Dificulty dificulty;
     [Range(10, 50)]
     public int width;
     [Range(10, 50)]
     public int height;
+
+    public bool randomStartCell;
     public Vector2Int startCell;
 
     [Header("Scene settings")]    
@@ -29,6 +33,10 @@ public class Maze : MonoBehaviour
     public bool showCellDistance;
     public bool drawHint;
 
+    private void Start()
+    {
+        Create();
+    }
 
     public void Create()
     {
@@ -40,8 +48,10 @@ public class Maze : MonoBehaviour
             this.dificulty = (Dificulty)UnityEngine.Random.Range(0, Enum.GetNames(typeof(Dificulty)).Length);
             this.width = UnityEngine.Random.Range(10, 50);
             this.height = UnityEngine.Random.Range(10, 50);
-            this.startCell = new Vector2Int(UnityEngine.Random.Range(0, this.width - 1), UnityEngine.Random.Range(0, this.height - 1));
         }
+        if(randomStartCell)
+            this.startCell = new Vector2Int(UnityEngine.Random.Range(0, this.width - 1), UnityEngine.Random.Range(0, this.height - 1));
+
         generator.algorithm = this.algorithm;
         generator.width = this.width;
         generator.height = this.height;
@@ -52,17 +62,11 @@ public class Maze : MonoBehaviour
         this.finishCell = generator.FinishCell;
         this.finishDistance = generator.FinishDistance;
         this.correctPath = generator.CorrectPath;
-        Spawn();
-
-        if(drawHint)
-        {
-            hintRenderer.SetPoints(correctPath);
-            hintRenderer.Render();
-        }
+        
     }
 
 
-    void Spawn()
+    public void Spawn()
     {
         for (int x = 0; x < this.cells.GetLength(0); x++)
         {
@@ -108,6 +112,20 @@ public class Maze : MonoBehaviour
             }
         }
 
+        if (drawHint)
+        {
+            hintRenderer.SetPoints(correctPath);
+            hintRenderer.Render();
+        }
+
+    }
+
+    public void Despawn()
+    {
+        foreach (Transform t in transform)
+        {
+            Destroy(t.gameObject);
+        }
     }
 
 }

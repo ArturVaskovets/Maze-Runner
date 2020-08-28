@@ -51,15 +51,15 @@ public class CameraManager : MonoBehaviour
         if (_cameraPivot != null)
             Destroy(_cameraPivot.gameObject);
         _cameraPivot = new GameObject("Camera Pivot");
-        _cameraPivot.transform.position = new Vector3((GameManager.Instance.Maze.width - 1f) / 2f, (GameManager.Instance.Maze.height - 1f) / 2f, -10f);
+        _cameraPivot.transform.position = new Vector3((GameManager.Instance.maze.width - 1f) / 2f, (GameManager.Instance.maze.height - 1f) / 2f, -10f);
 
         globalCamera.Follow = _cameraPivot.transform;
         SetCameraSize();
     }
     public void SetCameraSize()
     {
-        float wUnitsPerPixel = (float)GameManager.Instance.Maze.width / Screen.width;
-        float hUnitsPerPixel = (float)GameManager.Instance.Maze.height / Screen.height;
+        float wUnitsPerPixel = (float)GameManager.Instance.maze.width / Screen.width;
+        float hUnitsPerPixel = (float)GameManager.Instance.maze.height / Screen.height;
 
         if (wUnitsPerPixel > hUnitsPerPixel)
             globalCamera.m_Lens.OrthographicSize = 0.5f * Screen.height * wUnitsPerPixel;
